@@ -1,0 +1,7 @@
+{
+  "dataType": "all",
+  "interval": "hourly",
+  "priceThreshold": 50000,
+  "enableNotifications": true,
+  "webhookUrl": "https://discord.com/api/webhooks/1234567890/abcdefghijklmnop"
+}

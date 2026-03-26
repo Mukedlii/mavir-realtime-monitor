@@ -1,0 +1,37 @@
+{
+  "name": "mavir-realtime-electricity-monitor",
+  "version": "1.0.0",
+  "description": "Real-time Hungarian electricity price and generation mix monitor using MAVIR official data",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "mavir",
+    "electricity",
+    "energy",
+    "hungary",
+    "price-monitoring",
+    "renewable-energy",
+    "power-grid",
+    "real-time-data",
+    "energy-market",
+    "electricity-price"
+  ],
+  "author": {
+    "name": "Mukedlii",
+    "email": "mukedlii@example.com"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "apify": "^3.1.0",
+    "crawlee": "^3.5.0",
+    "axios": "^1.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mukedlii/mavir-realtime-monitor"
+  }
+}

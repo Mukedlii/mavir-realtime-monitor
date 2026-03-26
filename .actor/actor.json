@@ -1,0 +1,83 @@
+{
+  "actorSpecification": 1,
+  "name": "mavir-realtime-electricity-monitor",
+  "title": "MAVIR Real-time Electricity Price & Generation Monitor",
+  "description": "Real-time Hungarian electricity price monitoring and renewable energy generation tracking using official MAVIR data. Track spot prices, generation mix, and day-ahead forecasts with instant price alerts.",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "node-crawlee-cheerio"
+  },
+  "input": "./INPUT_SCHEMA.json",
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "MAVIR Electricity Data",
+      "description": "Real-time and historical electricity price and generation data",
+      "views": {
+        "overview": {
+          "title": "Overview",
+          "transformation": {
+            "fields": [
+              "timestamp",
+              "data.price.value",
+              "data.generation.renewable_percentage",
+              "data.generation.total"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {
+              "timestamp": { "label": "Timestamp", "format": "datetime" },
+              "data.price.value": { "label": "Price (HUF/MWh)", "format": "number" },
+              "data.generation.renewable_percentage": { "label": "Renewable %", "format": "number" },
+              "data.generation.total": { "label": "Total Generation (MW)", "format": "number" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "categories": [
+    "ENERGY",
+    "MONITORING",
+    "DATA_COLLECTION"
+  ],
+  "pricing": {
+    "model": "PAY_PER_EVENT",
+    "pricePerEvent": 0.01
+  },
+  "seo": {
+    "title": "MAVIR Electricity Price Monitor | Real-time Hungarian Energy Data",
+    "description": "Track Hungarian electricity prices in real-time using official MAVIR data. Monitor renewable energy generation, get price alerts, and access day-ahead forecasts. Pay-per-use pricing.",
+    "keywords": [
+      "MAVIR",
+      "Hungarian electricity price",
+      "energy monitoring",
+      "renewable energy tracker",
+      "power grid data",
+      "electricity market",
+      "real-time energy prices",
+      "Hungary TSO",
+      "energy trading",
+      "electricity forecast",
+      "spot price monitoring",
+      "green energy tracking"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-26",
+      "changes": [
+        "Initial release",
+        "Real-time price tracking",
+        "Generation mix monitoring",
+        "Day-ahead forecast",
+        "Webhook notifications",
+        "Price alert system"
+      ]
+    }
+  ]
+}
