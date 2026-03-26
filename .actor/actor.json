@@ -66,18 +66,5 @@
       "green energy tracking"
     ]
   },
-  "changelog": [
-    {
-      "version": "1.0.0",
-      "date": "2026-03-26",
-      "changes": [
-        "Initial release",
-        "Real-time price tracking",
-        "Generation mix monitoring",
-        "Day-ahead forecast",
-        "Webhook notifications",
-        "Price alert system"
-      ]
-    }
-  ]
+  "changelog": "# 1.0.0 (2026-03-26)\n\n- Initial release\n- Real-time price tracking\n- Generation mix monitoring\n- Day-ahead forecast\n- Webhook notifications\n- Price alert system"
 }
