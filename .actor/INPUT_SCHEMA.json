@@ -1,54 +1,91 @@
 {
-  "title": "MAVIR Real-time Monitor Input",
+  "title": "MAVIR Realtime Monitor Input",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
-    "dataType": {
-      "title": "Data Type",
+    "dataSource": {
+      "title": "Data Source",
       "type": "string",
-      "description": "Which data to fetch from MAVIR",
-      "default": "all",
-      "enum": ["all", "price", "generation", "forecast"],
-      "enumTitles": [
-        "All data (price + generation + forecast)",
-        "Current electricity price only",
-        "Generation mix only",
-        "Day-ahead forecast only"
-      ],
-      "editor": "select"
-    },
-    "interval": {
-      "title": "Data Interval",
-      "type": "string",
-      "description": "How often to collect data (for scheduled runs)",
-      "default": "hourly",
-      "enum": ["hourly", "daily"],
-      "enumTitles": ["Every hour", "Once per day"],
-      "editor": "select"
+      "description": "Which data source(s) to scrape",
+      "default": "both",
+      "enum": ["mavir", "hupx", "both"],
+      "enumTitles": ["MAVIR only", "HUPX only", "Both MAVIR + HUPX"]
     },
     "priceThreshold": {
       "title": "Price Alert Threshold (HUF/MWh)",
       "type": "integer",
-      "description": "Send alert when electricity price exceeds this threshold. Leave empty to disable.",
-      "editor": "number",
-      "example": 50000,
-      "nullable": true
+      "description": "Send email alert if price exceeds this value",
+      "default": 50000,
+      "minimum": 0,
+      "maximum": 200000
     },
-    "enableNotifications": {
-      "title": "Enable Notifications",
+    "enableEmailAlerts": {
+      "title": "Enable Email Alerts",
       "type": "boolean",
-      "description": "Send webhook notifications when price threshold is exceeded",
-      "default": false,
-      "editor": "checkbox"
+      "description": "Send email notifications when price threshold is exceeded",
+      "default": false
     },
-    "webhookUrl": {
-      "title": "Webhook URL",
+    "emailProvider": {
+      "title": "Email Provider",
       "type": "string",
-      "description": "URL to send notifications (Discord, Slack, custom endpoint)",
+      "description": "Which email service to use for alerts",
+      "default": "nodemailer",
+      "enum": ["nodemailer", "sendgrid"],
+      "enumTitles": ["Nodemailer (SMTP)", "SendGrid API"]
+    },
+    "smtpHost": {
+      "title": "SMTP Host",
+      "type": "string",
+      "description": "SMTP server hostname (for Nodemailer)",
+      "default": "smtp.gmail.com",
+      "editor": "textfield"
+    },
+    "smtpPort": {
+      "title": "SMTP Port",
+      "type": "integer",
+      "description": "SMTP server port (587 for TLS, 465 for SSL)",
+      "default": 587,
+      "enum": [25, 465, 587, 2525]
+    },
+    "smtpUser": {
+      "title": "SMTP Username",
+      "type": "string",
+      "description": "SMTP authentication username (usually your email)",
+      "editor": "textfield"
+    },
+    "smtpPassword": {
+      "title": "SMTP Password",
+      "type": "string",
+      "description": "SMTP authentication password (use app-specific password for Gmail)",
       "editor": "textfield",
-      "pattern": "^https?://.*",
-      "example": "https://discord.com/api/webhooks/...",
-      "nullable": true
+      "isSecret": true
+    },
+    "sendgridApiKey": {
+      "title": "SendGrid API Key",
+      "type": "string",
+      "description": "SendGrid API key (for SendGrid provider)",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "alertEmailFrom": {
+      "title": "Alert Email From",
+      "type": "string",
+      "description": "Sender email address for alerts",
+      "default": "alerts@energymonitor.io",
+      "editor": "textfield"
+    },
+    "alertEmailTo": {
+      "title": "Alert Email To",
+      "type": "string",
+      "description": "Recipient email(s) for alerts (comma-separated for multiple)",
+      "editor": "textfield",
+      "prefill": "your.email@example.com"
+    },
+    "debugMode": {
+      "title": "Debug Mode",
+      "type": "boolean",
+      "description": "Enable verbose logging and include API snapshots in output",
+      "default": false
     }
   },
   "required": []
