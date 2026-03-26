@@ -1,0 +1,55 @@
+{
+  "title": "MAVIR Real-time Monitor Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "dataType": {
+      "title": "Data Type",
+      "type": "string",
+      "description": "Which data to fetch from MAVIR",
+      "default": "all",
+      "enum": ["all", "price", "generation", "forecast"],
+      "enumTitles": [
+        "All data (price + generation + forecast)",
+        "Current electricity price only",
+        "Generation mix only",
+        "Day-ahead forecast only"
+      ],
+      "editor": "select"
+    },
+    "interval": {
+      "title": "Data Interval",
+      "type": "string",
+      "description": "How often to collect data (for scheduled runs)",
+      "default": "hourly",
+      "enum": ["hourly", "daily"],
+      "enumTitles": ["Every hour", "Once per day"],
+      "editor": "select"
+    },
+    "priceThreshold": {
+      "title": "Price Alert Threshold (HUF/MWh)",
+      "type": "integer",
+      "description": "Send alert when electricity price exceeds this threshold. Leave empty to disable.",
+      "editor": "number",
+      "example": 50000,
+      "nullable": true
+    },
+    "enableNotifications": {
+      "title": "Enable Notifications",
+      "type": "boolean",
+      "description": "Send webhook notifications when price threshold is exceeded",
+      "default": false,
+      "editor": "checkbox"
+    },
+    "webhookUrl": {
+      "title": "Webhook URL",
+      "type": "string",
+      "description": "URL to send notifications (Discord, Slack, custom endpoint)",
+      "editor": "textfield",
+      "pattern": "^https?://.*",
+      "example": "https://discord.com/api/webhooks/...",
+      "nullable": true
+    }
+  },
+  "required": []
+}
