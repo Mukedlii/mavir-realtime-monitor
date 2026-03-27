@@ -49,9 +49,8 @@
 
 ## Data Source
 
-**Energy-Charts API**: `api.energy-charts.info`
-
-Public API, no registration required.
+**Primary**: ENTSO-E Transparency Platform (official EU)  
+**Fallback**: Energy-Charts API (public)
 
 ## Links
 

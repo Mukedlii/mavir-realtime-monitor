@@ -86,12 +86,16 @@
 
 ## Data Source
 
-**Energy-Charts API**: `api.energy-charts.info`
+**Primary: ENTSO-E Transparency Platform** (official EU source)
+- API: `web-api.tp.entsoe.eu`
+- Official electricity market data for all EU countries
+- Day-ahead prices (A44 document type)
+- Hourly updates with 15-minute intervals
 
-- Public API, no registration required
-- Updated hourly with fresh market data
-- Covers 15 major European electricity markets
-- Industry-standard EUR/MWh pricing
+**Fallback: Energy-Charts API** (if ENTSO-E fails)
+- API: `api.energy-charts.info`
+- Public, no registration required
+- Same 15 European markets
 
 ## Schedule Recommendations
 
