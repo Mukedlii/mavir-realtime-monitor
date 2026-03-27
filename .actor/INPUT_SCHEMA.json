@@ -1,90 +1,47 @@
 {
-  "title": "MAVIR Realtime Monitor Input",
+  "title": "European Electricity Price Monitor",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
-    "dataSource": {
-      "title": "Data Source",
-      "type": "string",
-      "description": "Which data source(s) to scrape",
-      "default": "both",
-      "enum": ["mavir", "hupx", "both"],
-      "enumTitles": ["MAVIR only", "HUPX only", "Both MAVIR + HUPX"]
+    "countries": {
+      "title": "Countries to Monitor",
+      "type": "array",
+      "description": "Country codes: DE, FR, AT, HU, CZ, SK, RO, PL, IT, ES, NL, BE, CH, SI, HR",
+      "editor": "stringList",
+      "default": ["DE", "FR", "AT", "HU", "CZ", "SK", "RO", "PL", "IT", "ES", "NL", "BE", "CH", "SI", "HR"]
     },
     "priceThreshold": {
-      "title": "Price Alert Threshold (HUF/MWh)",
+      "title": "Price Alert Threshold (EUR/MWh)",
       "type": "integer",
-      "description": "Send email alert if price exceeds this value",
-      "default": 50000,
+      "description": "Alert if any country exceeds this value",
+      "default": 200,
       "minimum": 0,
-      "maximum": 200000
+      "maximum": 1000
     },
-    "enableEmailAlerts": {
-      "title": "Enable Email Alerts",
-      "type": "boolean",
-      "description": "Send email notifications when price threshold is exceeded",
-      "default": false
-    },
-    "emailProvider": {
-      "title": "Email Provider",
-      "type": "string",
-      "description": "Which email service to use for alerts",
-      "default": "nodemailer",
-      "enum": ["nodemailer", "sendgrid"],
-      "enumTitles": ["Nodemailer (SMTP)", "SendGrid API"]
-    },
-    "smtpHost": {
-      "title": "SMTP Host",
-      "type": "string",
-      "description": "SMTP server hostname (for Nodemailer)",
-      "default": "smtp.gmail.com",
-      "editor": "textfield"
-    },
-    "smtpPort": {
-      "title": "SMTP Port",
-      "type": "integer",
-      "description": "SMTP server port (587 for TLS, 465 for SSL)",
-      "default": 587
-    },
-    "smtpUser": {
-      "title": "SMTP Username",
-      "type": "string",
-      "description": "SMTP authentication username (usually your email)",
-      "editor": "textfield"
-    },
-    "smtpPassword": {
-      "title": "SMTP Password",
-      "type": "string",
-      "description": "SMTP authentication password (use app-specific password for Gmail)",
-      "editor": "textfield",
-      "isSecret": true
-    },
-    "sendgridApiKey": {
-      "title": "SendGrid API Key",
-      "type": "string",
-      "description": "SendGrid API key (for SendGrid provider)",
-      "editor": "textfield",
-      "isSecret": true
-    },
-    "alertEmailFrom": {
-      "title": "Alert Email From",
-      "type": "string",
-      "description": "Sender email address for alerts",
-      "default": "alerts@energymonitor.io",
-      "editor": "textfield"
-    },
-    "alertEmailTo": {
+    "emailTo": {
       "title": "Alert Email To",
       "type": "string",
-      "description": "Recipient email(s) for alerts (comma-separated for multiple)",
-      "editor": "textfield",
-      "prefill": "your.email@example.com"
+      "description": "Recipient email address for price alerts",
+      "editor": "textfield"
     },
-    "debugMode": {
-      "title": "Debug Mode",
-      "type": "boolean",
-      "description": "Enable verbose logging and include API snapshots in output",
-      "default": false
+    "emailFrom": {
+      "title": "Alert Email From (optional)",
+      "type": "string",
+      "description": "Sender email address",
+      "editor": "textfield"
+    },
+    "gmailUser": {
+      "title": "Gmail Username",
+      "type": "string",
+      "description": "Your Gmail address for SMTP authentication",
+      "editor": "textfield"
+    },
+    "gmailPass": {
+      "title": "Gmail App Password",
+      "type": "string",
+      "description": "Gmail app-specific password (not your regular password)",
+      "editor": "textfield",
+      "isSecret": true
     }
   },
   "required": []
