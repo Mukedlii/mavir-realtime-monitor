@@ -44,8 +44,7 @@
       "title": "SMTP Port",
       "type": "integer",
       "description": "SMTP server port (587 for TLS, 465 for SSL)",
-      "default": 587,
-      "enum": [25, 465, 587, 2525]
+      "default": 587
     },
     "smtpUser": {
       "title": "SMTP Username",
